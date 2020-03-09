@@ -2,6 +2,7 @@ package com.kulshreshthaneha.lab05;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     Counter counter = new Counter(0, 0, 0, 0, 0, 0, 0);
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+
 //    SharedPreferences sharedPreferences2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //    SharedPreferences.Editor editor2 = sharedPreferences2.edit();
 //    int create = sharedPreferences2.getInt("onCreate", 0);
@@ -41,11 +46,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int help = counter.getCreate() + 1;
-        counter.setCreate(help);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        sharedPreferences = getSharedPreferences("runtime", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.apply();
+
+
         int value = sharedPreferences.getInt("onCreate", 0);
         int finished = value + 1;
         editor.putInt("onCreate", finished);
@@ -63,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
         responseText16=findViewById(R.id.responseEditText16);
         responseText15=findViewById(R.id.responseEditText15);
         responseText14=findViewById(R.id.responseEditText14);
-
+        int help = counter.getCreate() + 1;
+        counter.setCreate(help);
         responseText11.setText("" + help);
         responseText21.setText("" + finished);
 
@@ -88,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
         int help = counter.getStart() + 1;
         counter.setStart(help);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
         int value = sharedPreferences.getInt("onStart", 0);
         int finished = value + 1;
         editor.putInt("onStart", finished);
@@ -108,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
         int help = counter.getResume() + 1;
         counter.setResume(help);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
         int value = sharedPreferences.getInt("onResume", 0);
         int finished = value + 1;
         editor.putInt("onResume", finished);
@@ -127,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
         int help = counter.getPause() + 1;
         counter.setPause(help);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
         int value = sharedPreferences.getInt("onPause", 0);
         int finished = value + 1;
         editor.putInt("onPause", finished);
@@ -146,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
         int help = counter.getStop() + 1;
         counter.setStop(help);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
         int value = sharedPreferences.getInt("onStop", 0);
         int finished = value + 1;
         editor.putInt("onStop", finished);
@@ -165,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
         int help = counter.getRestart() + 1;
         counter.setRestart(help);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
         int value = sharedPreferences.getInt("onRestart", 0);
         int finished = value + 1;
         editor.putInt("onRestart", finished);
@@ -185,18 +196,18 @@ public class MainActivity extends AppCompatActivity {
         counter.setDestroy(help);
 
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        int value = sharedPreferences.getInt("onDestroy", 0);
-        int finished = value + 1;
-        editor.putInt("onDestroy", finished);
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+        int value = sharedPreferences.getInt("onDestroy", 0)+1;
+//        int finished = value + 1;
+        editor.putInt("onDestroy", value);
         editor.apply();
-
-        responseText17=findViewById(R.id.responseEditText17);
-        responseText27=findViewById(R.id.responseEditText27);
-
-        responseText17.setText("" + help);
-        responseText27.setText("" + finished);
+//
+//        responseText17=findViewById(R.id.responseEditText17);
+//        responseText27=findViewById(R.id.responseEditText27);
+//
+//        responseText17.setText("" + help);
+//        responseText27.setText("" + value);
 
         Log.i("testButton", "Hi mo! "+responseText27.getText().toString());
     }
